@@ -128,14 +128,18 @@ export interface RegistrationKeys {
 export async function prepareRegistrationKeys(password: string): Promise<RegistrationKeys> {
   const keyPair = await generateRSAKeyPair();
   const salt = generateSalt();
-  const wrappingKey = await deriveWrappingKey(password, salt.buffer);
+
+  const saltBuffer = new ArrayBuffer(salt.byteLength);
+  new Uint8Array(saltBuffer).set(salt);
+
+  const wrappingKey = await deriveWrappingKey(password, saltBuffer);
   const wrappedPrivateKey = await wrapPrivateKey(keyPair.privateKey, wrappingKey);
   const publicKeyB64 = await exportPublicKey(keyPair.publicKey);
 
   return {
     publicKeyB64,
     wrappedPrivateKeyB64: bufferToBase64(wrappedPrivateKey),
-    pbkdf2SaltB64: bufferToBase64(salt.buffer),
+    pbkdf2SaltB64: bufferToBase64(saltBuffer),
     privateKey: keyPair.privateKey,
     publicKey: keyPair.publicKey,
   };
