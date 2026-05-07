@@ -76,7 +76,7 @@ export default function Sidebar({ onSelectConversation }: SidebarProps) {
   );
 
   return (
-    <aside className="max-w-72 shrink-0 bg-zinc-900 border-r border-zinc-800 flex flex-col h-full">
+    <aside className="hidden md:w-72 shrink-0 bg-zinc-900 border-r border-zinc-800 md:flex flex-col h-full">
       {/* Header */}
       <div className="px-5 py-4 border-b border-zinc-800">
         <div className="flex items-center justify-between">
