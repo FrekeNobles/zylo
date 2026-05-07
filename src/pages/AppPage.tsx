@@ -44,7 +44,7 @@ export default function AppPage() {
                 Or start a new one using the + button. All messages are end-to-end encrypted.
               </p>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-3 max-w-sm w-full">
+            <div className="mt-4 grid grid-cols-2 gap-3 max-w-sm w-full opacity-50">
               <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-left">
                 <p className="text-purple-400 text-xs font-mono mb-1">AES-GCM-256</p>
                 <p className="text-zinc-500 text-xs">Symmetric message encryption</p>
